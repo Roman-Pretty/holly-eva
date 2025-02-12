@@ -1,5 +1,5 @@
 <template>
-    <div class="hero bg-base-200 sm:min-h-[calc(100vh-4rem)] min-h-[100dvh] flex items-center justify-center">
+    <div class="hero bg-base-200 sm:min-h-[calc(100vh-4rem)] min-h-[90vh] flex items-center justify-center">
         <div class="text-start hero-content flex-col items-center px-0 mx-0">
             <img src="../assets/holly.jpg" alt="music" class="lg:max-w-[30vw] md:max-w-[50vw] sm:max-w-[60vw] max-w-full" />
             <img src="../assets/hollylogo.svg" alt="music" class="lg:max-w-[46vw] md:max-w-[50vw] sm:max-w-[60vw]" />
