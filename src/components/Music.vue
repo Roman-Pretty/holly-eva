@@ -1,24 +1,63 @@
+<script setup>
+import { ref, onMounted } from 'vue';
+import { fetchLatestVideos } from '../services/youtubeService.js';
+
+const videos = ref([]);
+const loading = ref(false);
+const error = ref(null);
+
+// Initialize with empty array, will be populated on mount
+onMounted(async () => {
+  loading.value = true;
+  console.log('Music component mounted, fetching videos...');
+  
+  try {
+    const fetchedVideos = await fetchLatestVideos(15);
+    console.log('Videos fetched:', fetchedVideos.length, fetchedVideos);
+    videos.value = fetchedVideos;
+  } catch (err) {
+    console.error('Error in Music component:', err);
+    error.value = 'Failed to load videos';
+  } finally {
+    loading.value = false;
+    console.log('Loading complete. Videos:', videos.value.length);
+  }
+});
+</script>
+
 <template>
-    <section id="music" class="bg-base-200 min-h-[100dvh] py-16 md:px-48 px-4">
-        <h1 class="md:text-5xl text-4xl font-semibold text-center text-base-content/90 font-serif mb-16 uppercase">Music</h1>
-        <div class="w-full h-full flex flex-wrap justify-between gap-y-10">
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/S-XOPtkOpP8?si=8MCEbRY5e9Zr3bMI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/11Jleb4J-_0?si=K3Hh3VZ6rr-5BDW-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/kX4J4ZfNBmA?si=XwNHV3DpQpe3Ab2Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/m0HTztWfoLg?si=YKpmD042z0PbKi32" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>            
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/0Mi6X-9c6q4?si=3HvD-kr17NYIyOGN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>           
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/e9UpSuymNGc?si=jeJM6VApOksVQA7W" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/FY325zI4dWg?si=hSC_KeAYFmx2tulR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/3qSvh7ebJeA?si=sSWM8zPCTlY4IZI4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/NjH8lDQxoQQ?si=HGeN1CIrpCDoUL1F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/U0tuVUkmr0k?si=BOuMUR-9QzM1Fy_J" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/9oRQk3gBKQQ?si=gbDdCqjmqTZ58wzw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/M4daw97UHi4?si=Ip-t0z_1VVFEGdO_" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/M1KBWrrm7rY?si=9-a8CnNh9LUSbNjD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/PxuLmhyuX84?si=rNmUq762JM3zf5Fj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <iframe class="lg:w-[30%] md:w-[47%] w-full h-[30dvh] " src="https://www.youtube.com/embed/aX-f1nMUj-8?si=_yK0DDSTA49mNaSx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-           
-            <!-- <iframe class="md:w-[440px] md:h-[248px]" src="https://www.youtube.com/embed/aX-f1nMUj-8?si=o1HBM-mIZAkWE9cK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
+    <section id="music" class="bg-base-200 min-h-[100dvh] py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-48">
+        <h1 class="md:text-5xl text-4xl font-semibold text-center text-base-content/90 font-serif mb-16">Music</h1>
+        
+        <!-- Loading State -->
+        <div v-if="loading" class="text-center py-16">
+            <span class="loading loading-spinner loading-lg"></span>
+            <p class="mt-4 text-base-content/70">Loading videos...</p>
         </div>
-        </section>
+
+        <!-- Error State -->
+        <div v-else-if="error" class="text-center py-16">
+            <p class="text-error">{{ error }}</p>
+        </div>
+
+        <!-- Videos Grid -->
+        <div v-else class="w-full h-full flex flex-wrap justify-between gap-y-10">
+            <!-- Debug info -->
+            <div v-if="videos.length === 0" class="w-full text-center py-16">
+                <p class="text-base-content/70">No videos found. Videos array length: {{ videos.length }}</p>
+            </div>
+            
+            <iframe 
+                v-for="video in videos" 
+                :key="video.id"
+                class="lg:w-[30%] md:w-[47%] w-full h-[30dvh]" 
+                :src="video.embedUrl" 
+                :title="video.title"
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
 </template>

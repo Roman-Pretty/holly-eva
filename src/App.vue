@@ -12,7 +12,7 @@ import Music from './components/Music.vue'
     <Hero />
     <About />
     <Music />
-    <footer class="bg-base-300 text-center h-[4rem] flex items-center justify-end md:px-48 px-6 font-semibold">
+    <footer class="bg-base-300 text-center h-[4rem] flex items-center justify-end px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-48 font-semibold">
       <!-- <p>© 2025 Holly Eva</p> -->
     </footer>
   </main>

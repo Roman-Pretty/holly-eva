@@ -1,7 +1,7 @@
 <template>
-    <section id="about" class="py-16 md:px-48 xl:px-96">
-        <h1 class="md:text-5xl text-4xl font-semibold md:text-start text-center text-base-content/90 font-serif mb-16 uppercase">About</h1>
-        <p class="text-base-content/60 lg:px-0 px-8 lg:columns-2 columns-1 gap-6 text-justify">
+    <section id="about" class="py-16 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-32 2xl:px-48">
+        <h1 class="md:text-5xl text-4xl font-semibold md:text-start text-center text-base-content/90 font-serif mb-16">About</h1>
+        <p class="text-base-content/60 lg:columns-2 columns-1 gap-6 text-justify font-sans">
             Holly Eva is a multilingual musician and vocalist with a diverse international background. Growing up
             in Mexico City, she developed a deep connection to music. Now based in England, she has embraced a global perspective,
             currently enriching her musical and cultural experiences on a year abroad in Japan. Fluent in Spanish,
